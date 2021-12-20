@@ -30,6 +30,7 @@ const addTodo = (event) => {
     todoInput.value = ""
 } 
 
+//creating delete and complete function
 const deleteComplete = (event) => {
     const item = event.target;
     //console.log(item)
