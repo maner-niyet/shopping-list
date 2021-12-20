@@ -7,7 +7,6 @@ const todoList = document.querySelector(".todo-list") //ul
 const addTodo = (event) => {
     //prevent form from submitting
     event.preventDefault()
-    console.log("hey")
     //creating todo div
     const todoDiv = document.createElement("div")
     todoDiv.classList.add("todoDiv")
@@ -29,8 +28,23 @@ const addTodo = (event) => {
     //append todoDiv to UL
     todoList.appendChild(todoDiv)
     todoInput.value = ""
-} //ES5 => ES6 
+} 
 
+const deleteComplete = (event) => {
+    const item = event.target;
+    //console.log(item)
+    if (item.classList.contains("delete-btn")) {
+        const todo = item.parentElement;
+        todo.classList.add("fall")
+        todo.addEventListener("transitionend", () => {
+            todo.remove()
+        })
+    } else if (item.classList.contains("completed-btn")) {
+        const todo = item.parentElement;
+        todo.classList.toggle("completed")
+    }
+}
 
 //event-listeners
 todoButton.addEventListener("click", addTodo)
+todoList.addEventListener("click", deleteComplete)

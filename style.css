@@ -68,6 +68,7 @@ form button:hover{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.5s ease;
 }
 .todoDiv li {
     flex: 1;
@@ -88,6 +89,20 @@ form button:hover{
 
 .todo-item {
     padding: 0rem 0.5rem;
+}
+
+.fa-trash, 
+.fa-check {
+    pointer-events: none;
+}
+
+.fall {
+    transform: translateY(8rem) rotateZ(20deg);
+    opacity: 0;
+}
+.completed {
+    text-decoration: line-through;
+    opacity: 0.7;
 }
 
 select {
