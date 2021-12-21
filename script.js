@@ -2,10 +2,11 @@
 const todoInput = document.querySelector(".todo-input") //input
 const todoButton = document.querySelector(".todo-button") //button
 const todoList = document.querySelector(".todo-list") //ul
+const filterOption = document.querySelector(".filter-todo")//select
 
 //functions
 const addTodo = (event) => {
-    //prevent form from submitting
+    //prevent button from submitting form
     event.preventDefault()
     //creating todo div
     const todoDiv = document.createElement("div")
@@ -42,10 +43,38 @@ const deleteComplete = (event) => {
         })
     } else if (item.classList.contains("completed-btn")) {
         const todo = item.parentElement;
-        todo.classList.toggle("completed")
+        todo.classList.toggle("completed");
     }
+}
+
+//creating filter option func
+const filterTodo = (event) => {
+    const todos = todoList.childNodes; //all DIVs inside UL
+    todos.forEach(function(todo){
+        console.log(event.target.value)
+        switch (event.target.value) {
+            case "all":
+                todo.style.display = "flex"
+                break;
+            case "completed":
+                if (todo.classList.contains("completed")) {
+                    todo.style.display = "flex"
+                } else {
+                    todo.style.display = "none"
+                }
+                break;
+            case "uncompleted":
+                if (!todo.classList.contains("completed")) {
+                    todo.style.display = "flex"
+                } else {
+                    todo.style.display = "none"
+                }
+                break;
+        }
+    })
 }
 
 //event-listeners
 todoButton.addEventListener("click", addTodo)
 todoList.addEventListener("click", deleteComplete)
+filterOption.addEventListener("click", filterTodo)
